@@ -52,5 +52,5 @@ class Display(Handler):
                 self.render('main_monitor.html', params = tokens[1:15])
             
 		
-app=webapp2.WSGIApplication([('/anc_mess1', MainPage),('/display',Display)], debug=True)
+app=webapp2.WSGIApplication([('/anc_mess1', MainPage),('/',Display)], debug=True)
 	
