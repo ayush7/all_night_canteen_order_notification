@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+				<meta http-equiv="refresh" content="10">
+		<style>
+			#top_tick{
+	width: 100%;
+	font-size: 30;
+	font-family: sans-serif;
+
+	font-weight: 700;
+	text-align: center;
+	color: white;
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: orange;
+	text-decoration-color: white;
+}
+
+
+#middle_area{
+	padding: 5%;
+
+
+	
+
+}
+
+td{
+	text-align: center;
+	font-family: sans-serif;
+	color:#00264d;
+	font-weight: bolder;
+	font-size: 7em;
+	padding: 0.3em;
+}
+
+#last_part{
+	font-size: 2em;
+	font-family: sans-serif;
+
+	font-weight: 700;
+	text-align: center;
+	color: white;
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: orange;
+	text-decoration-color: white;
+
+
+}
+#ip_link{
+	color: green;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+		</style>
+	</head>
+	<body>
+		<h1 id="top_tick">
+		<div>
+		Ready Orders
+		</div>
+		</h1>
+
+		<div id="middle_area">
+			<table border="0" style="width:100%">
+			 {% for o in params %} 
+				{% if params.index(o)%3 == 0 %}
+					<tr>
+				{%endif%}
+			
+				<td>{{o}}</td>	
+				
+				{% if params.index(o)%3 == 2 %}
+					</tr>
+				{%endif%}
+
+				
+			{%endfor%}
+				
+			</table>
+		</div>
+
+
+		<div id="last_part">
+			Connect to wifi stark (its open!) and Goto <span id="ip_link">192.168.0.113:8080/display</span> from your phone to get live status. 
+		</div>
+
+
+	</body>
+
+</html>

@@ -1,0 +1,129 @@
+<html>
+<head>
+<style>
+#xxx{
+width: 100%;
+height:7vh;
+}
+
+a:link {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;	
+    text-decoration: none;
+    display: inline-block;
+    border:2px solid orange;
+    margin: 5px 5px 5px 5px;
+}
+
+
+a:hover, a:active {
+    background-color: red;
+}
+
+			#top_tick{
+	width: 100%;
+	font-size: 30;
+	font-family: sans-serif;
+
+	font-weight: 700;
+	text-align: center;
+	color: white;
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: orange;
+	text-decoration-color: white;
+}
+
+
+#middle_area{
+	padding: 5%;
+
+
+	
+
+}
+
+td{
+	text-align: center;
+	font-family: sans-serif;
+	color:#00264d;
+	font-weight: bolder;
+	font-size: 7em;
+	padding: 0.3em;
+}
+
+#last_part{
+	font-size: 2em;
+	font-family: sans-serif;
+
+	font-weight: 700;
+	text-align: center;
+	color: white;
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: orange;
+	text-decoration-color: white;
+
+
+}
+#ip_link{
+	color: green;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+		</style>
+
+
+<meta http-equiv="refresh" content="30">
+
+</head>
+
+<body>
+<form  method=post>
+<input id="xxx" type="text" name="q">
+<br>
+<input id="xxx" type="submit">
+
+</form>
+
+		<div id="middle_area">
+			<table border="0" style="width:100%">
+			 {% for o in params %} 
+				{% if params.index(o)%5 == 0 %}
+					<tr>
+				{%endif%}
+			
+				<td> <!--<a href="/anc_mess1?d={{o}}">{{o}}</a> </td> -->
+				<form method="post">
+    			<button name="d" value="{{o}}">{{o}}</button>
+				</form>	
+				</td> 
+				{% if params.index(o)%3 == 2 %}
+					</tr>
+				{%endif%}
+
+				
+			{%endfor%}
+				
+			</table>
+		</div>
+
+
+
+
+<!--<ul>
+{% if params %}
+{% for o in params %}
+<li> 
+
+{% endfor %}
+{% endif %}
+</ul>
+-->
+</body>
+</html>
