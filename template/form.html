@@ -36,15 +36,16 @@
 
 	<body>
 			<form  method=post>
-				<input  type="number" name="q" class="form-control" >
+				<input  type="text" name="q" class="form-control" >
 				<br>
 				<input type="submit"  ><!--class="btn btn-warning btn-block btn-lg"-->
 
+			</form>
 
 			<div id="middle_area">
 				<table border="0" class="table">
 				 {% for o in params %} 
-					{% if params.index(o)%3 == 0 %}
+					{% if params.index(o)%5 == 0 %}
 						<tr>
 					{%endif%}
 				
