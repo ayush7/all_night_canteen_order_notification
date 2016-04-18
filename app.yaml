@@ -4,6 +4,8 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /bootstrap
+  static_dir: template/bootstrap
 - url: /.*
   script: testApp.app
 
