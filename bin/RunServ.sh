@@ -1,2 +1,2 @@
 #!/bin/bash
-uwsgi --ini conf.ini
+uwsgi --static-map /bootstrap=template/bootstrap --ini conf.ini

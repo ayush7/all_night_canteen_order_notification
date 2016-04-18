@@ -55,7 +55,7 @@ class MainPage(Handler):
 		if d and d.isdigit():
 			d = int(d)
 			time_end_sec[d]=time.time()
-			time_hist[d].append((time_min(time_start_sec[d]) ,time_min(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])))
+			time_hist[d].append((time_min(time_start_sec[d]) ,time_min(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])/60))
 			tokens.remove(d) 
 			tokens.sort()
 		self.render('form.html',params = tokens)
