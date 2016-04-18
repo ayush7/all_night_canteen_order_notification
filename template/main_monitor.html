@@ -91,13 +91,13 @@
 		<div id="middle_area">
 			<table border="0" style="width:100%">
 			 {% for o in params %} 
-				{% if params.index(o)%3 == 0 %}
+				{% if params.index(o)%4 == 0 %}
 					<tr>
 				{%endif%}
 			
 				<td>{{o}}</td>	
 				
-				{% if params.index(o)%3 == 2 %}
+				{% if params.index(o)%4 == 3 %}
 					</tr>
 				{%endif%}
 
