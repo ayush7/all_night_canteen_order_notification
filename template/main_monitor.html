@@ -1,81 +1,103 @@
+<!--File for storing the display end-->
+
 <!DOCTYPE html>
 <html>
+
 	<head>
-				<meta http-equiv="refresh" content="10">
+		<meta http-equiv="refresh" content="10">
 		<style>
+				
+
 			#top_tick{
-	width: 100%;
-	font-size: 30;
-	font-family: sans-serif;
+				/*older code*/
+				width: 100%;
+				font-size: 3em;
+				font-family: sans-serif;
+				font-weight: 700;
+				text-align: center;
+				color: white;
+				padding-top: 0.2em;
+				padding-bottom: 0.2em;
+				background-color: orange;
+				text-decoration-color: white;
+				
+			}
+			#middle_area{
+				padding: 3%;
+				
+			}
+			td{
+				text-align: center;
+				font-family: sans-serif;
+				color:#00264d;
+				font-weight: bolder;
+				font-size: 7em;
+				padding: 0.3em;
+			}
 
-	font-weight: 700;
-	text-align: center;
-	color: white;
+			/*IP ticker on bottom*/
+			#ip_tick{
+			    position:fixed;
+			    /*height:3em;*/
+			    padding-top: 0.5em;
+			    padding-bottom: 0.5em;
+			    font-family: sans-serif;
+			    text-align: center;
+			    font-size: 2em;
+			    background-color:orange;
+			    bottom:0px;
+			    left:0px;
+			    color: white;
+			    right:0px;
+			    margin-bottom:0px;
+			}
 
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: orange;
-	text-decoration-color: white;
-}
-
-
-#middle_area{
-	padding: 5%;
-
-
-	
-
-}
-
-td{
-	text-align: center;
-	font-family: sans-serif;
-	color:#00264d;
-	font-weight: bolder;
-	font-size: 7em;
-	padding: 0.3em;
-}
-
-#last_part{
-	font-size: 2em;
-	font-family: sans-serif;
-
-	font-weight: 700;
-	text-align: center;
-	color: white;
-
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: orange;
-	text-decoration-color: white;
-
-
-}
-#ip_link{
-	color: green;
-	font-size: 30px;
-	font-weight: bolder;
-}
-
+			/*highlighting IP link*/
+			#ip_link{
+			    color:blue;
+			 
+			 /*Team name at the bottom*/   
+			}
+			#BPHC{
+			    font-size: 0.7em;
+			    color: white;
+			    background-color: orange;
+			}
+			/*#last_part{
+				font-size: 2em;
+				font-family: sans-serif;
+				font-weight: 700;
+				text-align: center;
+				color: white;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				background-color: orange;
+				text-decoration-color: white;
+			}
+			#ip_link{
+				color: green;
+				font-size: 30px;
+				font-weight: bolder;
+			}*/
 		</style>
 	</head>
 	<body>
-		<h1 id="top_tick">
-		<div>
+		<div id="top_tick">
+		
 		Ready Orders
+	
 		</div>
-		</h1>
 
 		<div id="middle_area">
 			<table border="0" style="width:100%">
 			 {% for o in params %} 
-				{% if params.index(o)%3 == 0 %}
+				{% if params.index(o)%5 == 0 %}
 					<tr>
 				{%endif%}
 			
 				<td>{{o}}</td>	
 				
-				{% if params.index(o)%3 == 2 %}
+				{% if params.index(o)%5 == 4 %}
 					</tr>
 				{%endif%}
 
@@ -86,8 +108,11 @@ td{
 		</div>
 
 
-		<div id="last_part">
-			Connect to wifi stark (its open!) and Goto <span id="ip_link">192.168.0.116</span> from your phone to get live status. 
+		<div id="ip_tick">
+			Goto <span id="ip_link">172.16.42.42</span> from your phone to get live status. 
+			<br>
+			<div id="BPHC">
+			Created by SmartCampus<sup>&reg</sup>, BITS Pilani - Hyderabad Campus
 		</div>
 
 

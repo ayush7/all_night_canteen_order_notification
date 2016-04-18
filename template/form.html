@@ -1,110 +1,79 @@
+<!DOCTYPE html>
+
 <html>
-<head>
-<style>
-#xxx{
-width: 100%;
-height:7vh;
-}
-a:link {
-    background-color: #f44336;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;	
-    text-decoration: none;
-    display: inline-block;
-    border:2px solid orange;
-    margin: 5px 5px 5px 5px;
-}
-a:hover, a:active {
-    background-color: red;
-}
-			#top_tick{
-	width: 100%;
-	font-size: 30;
-	font-family: sans-serif;
-	font-weight: 700;
-	text-align: center;
-	color: white;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: orange;
-	text-decoration-color: white;
-}
-#middle_area{
-	padding: 5%;
-	
-}
-td{
-	text-align: center;
-	font-family: sans-serif;
-	color:#00264d;
-	font-weight: bolder;
-	font-size: 7em;
-	padding: 0.3em;
-}
-#last_part{
-	font-size: 2em;
-	font-family: sans-serif;
-	font-weight: 700;
-	text-align: center;
-	color: white;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: orange;
-	text-decoration-color: white;
-}
-#ip_link{
-	color: green;
-	font-size: 30px;
-	font-weight: bolder;
-}
-		</style>
+	<head>
 
+	<!--Refresh and stylesheet link-->
+	<meta http-equiv="refresh" content="10">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		*,
+		*:before,
+		*:after {
+		  -moz-box-sizing: border-box;
+		  -webkit-box-sizing: border-box;
+		  box-sizing: border-box;
+		}
+		form {
+		  max-width: 300px;
+		  margin: 10px auto;
+		  padding: 10px 20px;
+		  background: #f4f7f8;
+		  border-radius: 8px;
+		}
+		#middle_area{
+			max-width: 300px;
+		  margin: 10px auto;
+		  padding: 10px 20px;
+		  background: #f4f7f8;
+		  border-radius: 8px;
+		}
 
-<meta http-equiv="refresh" content="10">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-</head>
+	</style>
 
-<body>
-		<form  method=post>
-			<input  type="text" name="q" class="form-control">
-			<br>
-			<input type="submit" class="btn btn-success btn-lg btn-block">
+	</head>
 
-		</form>
+	<body>
+			<form  method=post>
+				<input  type="number" name="q" class="form-control" >
+				<br>
+				<input type="submit"  ><!--class="btn btn-warning btn-block btn-lg"-->
 
-		<div id="middle_area">
-			<table border="0" class="table">
-			 {% for o in params %} 
-				{% if params.index(o)%5 == 0 %}
-					<tr>
-				{%endif%}
-			
-				<td> <!--<a href="/anc_mess1?d={{o}}">{{o}}</a> </td> -->
-				<form method="post">
-    			<button name="d" value="{{o}}">{{o}}</button>
-				</form>	
-				</td> 
-				{% if params.index(o)%3 == 2 %}
-					</tr>
-				{%endif%}
+			</form>
 
+			<div id="middle_area">
+				<table border="0" class="table">
+				 {% for o in params %} 
+					{% if params.index(o)%3 == 0 %}
+						<tr>
+					{%endif%}
 				
-			{%endfor%}
-				
-			</table>
-		</div>
+					<td> <!--<a href="/anc_mess1?d={{o}}">{{o}}</a> </td> -->
+					<form method="post">
+	    			<button class="btn btn-lg btn-warning"name="d" value="{{o}}">{{o}}</button>
+					</form>	
+					</td> 
+					{% if params.index(o)%3 == 2 %}
+						</tr>
+					{%endif%}
+
+					
+				{%endfor%}
+					
+				</table>
+			</div>
 
 
 
-
-<!--<ul>
-{% if params %}
-{% for o in params %}
-<li> 
-{% endfor %}
-{% endif %}
-</ul>
--->
-</body>
+	<!--Redundant -->
+	<!--<ul>
+	{% if params %}
+	{% for o in params %}
+	<li> 
+	{% endfor %}
+	{% endif %}
+	</ul>
+	-->
+	</body>
 </html>

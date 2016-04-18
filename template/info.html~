@@ -3,7 +3,7 @@
 <table>
 {%for obj in time_hist %}
 <tr>
-	{{obj}} : {{time_hist[obj]}}<br>
+	{{obj}} : {{time_hist[obj}}<br>
 {%endfor%}
 </table>
 
