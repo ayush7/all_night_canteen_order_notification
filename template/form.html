@@ -1,5 +1,6 @@
 <html>
 <head>
+<!--
 <style>
 #xxx{
 width: 100%;
@@ -59,17 +60,54 @@ td{
 	font-weight: bolder;
 }
 		</style>
+-->
 
 
 <meta http-equiv="refresh" content="10">
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/component.css">
+
+<!--For styling the Heading in the fom app-->
+<style>
+	/* Header Style */
+		.main,
+		.container > header {
+			margin: 0;
+			padding: 2vw;
+			text-align: center;
+		}
+
+		.container > header h1 {
+			margin: 0;
+			font-weight: bold;
+			font-size: 3vw;
+			line-height: 1.3;
+			color:rgb(235, 126, 30);
+		}
+
+		.container > header span {
+			display: block;
+			padding: 0 0 0.6em 0.1em;
+			font-size: 1.3vw;
+			color: #aca89a;
+		}
+
+}
+
+</style>
+
 </head>
 
 <body>
+	<div class="container">
+			
+		<header>
+			<h1> Mess 1 <span> All Night Canteen </span></h1>	
+		</header>
 		<form  method=post>
 			<input  type="text" name="q" class="form-control">
 			<br>
-			<input type="submit" class="btn btn-success btn-lg btn-block">
+			<input type="submit" class="btn btn-lg btn-block btnx btn-1 btn-1ax">
 
 		</form>
 
@@ -82,10 +120,10 @@ td{
 			
 				<td> <!--<a href="/anc_mess1?d={{o}}">{{o}}</a> </td> -->
 				<form method="post">
-    			<button name="d" value="{{o}}">{{o}}</button>
+    			<button class="container" name="d" value="{{o}}">{{o}}</button>
 				</form>	
 				</td> 
-				{% if params.index(o)%3 == 2 %}
+				{% if params.index(o)%5 == 4 %}
 					</tr>
 				{%endif%}
 

@@ -3,12 +3,6 @@ import webapp2
 import jinja2
 import time
 import datetime
-<<<<<<< HEAD
-
-=======
->>>>>>> 7cb97c9e50d1929a7dd9a85d1397cc5e9e69e30e
-
-
 
 #from google.appengine.ext import db
 
@@ -17,7 +11,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),au
 n=150
 #total no of token available
 tokens=list()
-<<<<<<< HEAD
+
 time_hist=dict()
 for i in range(n):
 	time_hist[i]=list()
@@ -29,13 +23,7 @@ def sec():
 	return time.time()
 
 def time(sec):
-	return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-=======
-time_history=dict()
-for i in range(n): 
-	time_history[i]=list()
->>>>>>> 7cb97c9e50d1929a7dd9a85d1397cc5e9e69e30e
-
+	return datetime.datetime.fromtimestamp(sec).strftime('%Y-%m-%d %H:%M:%S')
 
 #Handlers
 class Handler(webapp2.RequestHandler):
@@ -49,24 +37,7 @@ class Handler(webapp2.RequestHandler):
 	def render(self, template, **kw):
 		self.write(self.render_str(template, **kw))
 
-<<<<<<< HEAD
-
 class MainPage(Handler):
-=======
-		# helper funcs
-	def seconds(self):
-		return time.time()
-
-	def time(self,secs):
-		return datetime.datetime.fromtimestamp(secs).strftime('%Y-%m-%d %H:%M:%S')
->>>>>>> 7cb97c9e50d1929a7dd9a85d1397cc5e9e69e30e
-
-	
-class MainPage(Handler):
-	time_start_seconds = 0
-	time_end_seconds = 0
-	time_start = 0
-	time_end = 0
 	def get(self):  
 		self.render('form.html',params=tokens)
 		
@@ -79,50 +50,28 @@ class MainPage(Handler):
 			if q in tokens:         
 				pass
 			else:
-<<<<<<< HEAD
-				time_start_sec[q]=self.sec()
-=======
-				self.time_start_seconds=self.seconds()
-				time_start=self.time(self.time_start_seconds);
->>>>>>> 7cb97c9e50d1929a7dd9a85d1397cc5e9e69e30e
+				time_start_sec[q]=sec()
 				tokens.append(q)
 				tokens.sort()
 		
 		if d and d.isdigit():
-			self.time_end_seconds=self.seconds()
-			time_end=self.time(self.time_end_seconds)
 			d = int(d)
-			time_end_sec[d]=self.sec()
-			time_hist[d].append(tuple(time(time_start_sec[d]) ,time(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])))
+			time_end_sec[d]=sec()
+			time_hist[d].append((time(time_start_sec[d]) ,time(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])/60))
 			tokens.remove(d) 
-			tokens.sort()
-			time_delay=(self.time_end_seconds-self.time_start_seconds)/60
-			time_history[d].append((self.time_start,self.time_end,time_delay))
+			# tokens.sort()
 		self.render('form.html',params = tokens)
 
 class Display(Handler):
-<<<<<<< HEAD
         def get (self):			
             if len(tokens)<15:
                 self.render('main_monitor.html', params = tokens)
             else:
                 self.render('main_monitor.html', params = tokens[1:15])
+
 class Info(Handler):
 		def get(self):
 			self.render('info.html', time_hist=time_hist)    
 		
 app=webapp2.WSGIApplication([('/anc_mess1', MainPage),('/',Display),('/info',Info)], debug=True)
-=======
-		def get (self):         
-			if len(tokens)<15:
-				self.render('main_monitor.html', params = tokens)
-			else:
-				self.render('main_monitor.html', params = tokens[1:15])
-			
-class Time_History(Handler):
-		def get (self):
-			self.render('info.html',time_history = time_history)
 
-app=webapp2.WSGIApplication([('/anc_mess1', MainPage),('/',Display),('/info',Time_History)], debug=True)
->>>>>>> 7cb97c9e50d1929a7dd9a85d1397cc5e9e69e30e
-	
