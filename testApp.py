@@ -45,12 +45,15 @@ class MainPage(Handler):
 
 		if q and q.isdigit():
 			q = int(q)
-			if q in tokens:         
+			if q>150:
 				pass
 			else:
-				time_start_sec[q]=time.time()
-				tokens.append(q)
-				tokens.sort()
+				if q in tokens:         
+					pass
+				else:
+					time_start_sec[q]=time.time()
+					tokens.append(q)
+					tokens.sort()
 		
 		if d and d.isdigit():
 			d = int(d)
