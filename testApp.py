@@ -6,7 +6,7 @@ import datetime
 
 #from google.appengine.ext import db
 
-template_dir = os.path.join(os.path.dirname(__file__),'template')
+template_dir = os.path.join(os.path.dirname(__file__),'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),autoescape = True)
 n=150
 #total no of token available
@@ -57,10 +57,11 @@ class MainPage(Handler):
 		
 		if d and d.isdigit():
 			d = int(d)
-			time_end_sec[d]=time.time()
-			time_hist[d].append((time_min(time_start_sec[d]) ,time_min(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])/60))
-			tokens.remove(d) 
-			tokens.sort()
+			if d in tokens:
+				time_end_sec[d]=time.time()
+				time_hist[d].append((time_min(time_start_sec[d]) ,time_min(time_end_sec[d]) ,(time_end_sec[d]-time_start_sec[d])/60))
+				tokens.remove(d) 
+				tokens.sort()
 		self.render('form.html',params = tokens)
 
 class Display(Handler):
@@ -68,10 +69,19 @@ class Display(Handler):
             if len(tokens)<15:
                 self.render('main_monitor.html', params = tokens)
             else:
-                self.render('main_monitor.html', params = tokens[1:15])
+                self.render('main_monitor.html', params = tokens[1:,15])
 
 class Info(Handler):
 		def get(self):
-			self.render('info.html', time_hist=time_hist)    
+			self.render('info.html')    
+
+		def post(self):
+			q = self.request.get("q")
+	
+			if q and q.isdigit():
+				q = int(q)
+
+			self.render('info.html', time_hist = time_hist, obj = q)    
+
 		
 app=webapp2.WSGIApplication([('/anc_mess1', MainPage),('/',Display),('/info',Info)], debug=True)

@@ -1,0 +1,55 @@
+<html>
+
+<html>
+	<head>
+
+	<!--Refresh and stylesheet link-->
+	<meta http-equiv="refresh" content="10">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		*,
+		*:before,
+		*:after {
+		  -moz-box-sizing: border-box;
+		  -webkit-box-sizing: border-box;
+		  box-sizing: border-box;
+		}
+		form {
+		  max-width: 300px;
+		  margin: 10px auto;
+		  padding: 10px 20px;
+		  background: #f4f7f8;
+		  border-radius: 8px;
+		}
+		#middle_area{
+			max-width: 300px;
+		  margin: 10px auto;
+		  padding: 10px 20px;
+		  background: #f4f7f8;
+		  border-radius: 8px;
+		}
+
+	</style>
+
+	</head>
+
+	<body>
+			<form  method=post>
+				<input  type="text" name="q" class="form-control" >
+				<br>
+				<input type="submit"  ><!--class="btn btn-warning btn-block btn-lg"-->
+
+			</form>
+
+<br>
+<table>
+<tr>
+{% if time_hist and obj%}
+	{{obj}} : {{time_hist[obj]}}
+
+{%endif%}
+</tr>
+</table>
+</body>
+</html>
