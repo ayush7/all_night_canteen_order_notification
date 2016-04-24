@@ -2,8 +2,7 @@ import os
 import flask
 import time
 import datetime
-
-
+import commands
 
 
 
@@ -16,6 +15,7 @@ n=150
 #total no of token available
 tokens=list()
 time_hist=dict()
+registered_tokens=dict()
 
 for i in range(n):
 	time_hist[i]=list()
@@ -54,6 +54,17 @@ def main():
 						time_start_sec[q]=time.time()
 						tokens.append(q)
 						tokens.sort()
+						# print q
+						# print int(q) in registered_tokens.keys()
+						if int(q) in registered_tokens.keys():
+							send_jid=dict(registered_tokens)[q]
+							cmd = 'sudo yowsup-cli demos -c /home/gadgetman/Code/yowsup/config -s ' + str(send_jid) + ' "Food ready for number: ' + str(q) + '."' 
+							# print cmd
+							print commands.getstatusoutput(cmd)
+							registered_tokens.pop(q)
+							# print registered_tokens
+
+
 		if "d" in request.form.keys():
 			d=request.form['d']
 			if d and d.isdigit():
@@ -63,6 +74,22 @@ def main():
 				tokens.remove(d) 
 				tokens.sort()
 		
+		if "reg_token" in request.form.keys():
+			print "Yes"
+			reg_token=request.form['reg_token']
+			to_Jid=request.form['jid']
+			# print to_Jid
+			# print reg_token
+			final_token = ''
+			final_token = u''.join(c for c in reg_token if '0' <= c <= '9')
+			print final_token
+			registered_tokens.update({int(final_token):to_Jid})
+			print registered_tokens
+			# reg_token = int(reg_token)
+			# print reg_token
+			cmd = 'sudo yowsup-cli demos -c /home/gadgetman/Code/yowsup/config -s 919603427665 "Token registered for number: ' + str(final_token) + '."' 
+			print commands.getstatusoutput(cmd)
+			
 		
 		
 		return render_template('form.html',params=tokens)
