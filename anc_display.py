@@ -58,7 +58,7 @@ def main():
 						# print int(q) in registered_tokens.keys()
 						if int(q) in registered_tokens.keys():
 							send_jid=dict(registered_tokens)[q]
-							cmd = 'sudo yowsup-cli demos -c /home/gadgetman/Code/yowsup/config -s ' + str(send_jid) + ' "Food ready for number: ' + str(q) + '."' 
+							cmd = 'sudo yowsup-cli demos -c /home/pi/config -s ' + str(send_jid) + ' "Food ready for number: ' + str(q) + '."' 
 							# print cmd
 							print commands.getstatusoutput(cmd)
 							registered_tokens.pop(q)
@@ -75,20 +75,19 @@ def main():
 				tokens.sort()
 		
 		if "reg_token" in request.form.keys():
-			print "Yes"
 			reg_token=request.form['reg_token']
 			to_Jid=request.form['jid']
 			# print to_Jid
 			# print reg_token
 			final_token = ''
 			final_token = u''.join(c for c in reg_token if '0' <= c <= '9')
-			print final_token
-			registered_tokens.update({int(final_token):to_Jid})
-			print registered_tokens
-			# reg_token = int(reg_token)
-			# print reg_token
-			cmd = 'sudo yowsup-cli demos -c /home/gadgetman/Code/yowsup/config -s 919603427665 "Token registered for number: ' + str(final_token) + '."' 
-			print commands.getstatusoutput(cmd)
+			if final_token:
+				registered_tokens.update({int(final_token):to_Jid})
+				print registered_tokens
+				# reg_token = int(reg_token)
+				# print reg_token
+				cmd = 'sudo yowsup-cli demos -c /home/pi/config -s ' + str(to_Jid)+ ' "Token registered for number: ' + str(final_token) + '."' 
+				print commands.getstatusoutput(cmd)
 			
 		
 		
@@ -110,4 +109,4 @@ def info():
 
 if __name__=='__main__':
 	app.debug=True
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0',port=80)

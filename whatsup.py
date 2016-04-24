@@ -2,7 +2,6 @@ from yowsup.layers.interface                           import YowInterfaceLayer,
 from yowsup.layers.protocol_messages.protocolentities  import TextMessageProtocolEntity
 from yowsup.layers.protocol_receipts.protocolentities  import OutgoingReceiptProtocolEntity
 from yowsup.layers.protocol_acks.protocolentities      import OutgoingAckProtocolEntity
-from layer import EchoLayer
 from yowsup.layers                             import YowParallelLayer
 from yowsup.layers.auth                        import YowAuthenticationProtocolLayer
 from yowsup.layers.protocol_messages           import YowMessagesProtocolLayer
@@ -27,7 +26,7 @@ class EchoLayer(YowInterfaceLayer):
         if True:
             receipt = OutgoingReceiptProtocolEntity(messageProtocolEntity.getId(), messageProtocolEntity.getFrom(), 'read', messageProtocolEntity.getParticipant())
             self.toLower(receipt)
-            r = requests.post('http://localhost:5000/anc_mess1/', data = {'reg_token':messageProtocolEntity.getBody(),'jid':messageProtocolEntity.getFrom()})
+            r = requests.post('http://localhost/anc_mess1/', data = {'reg_token':messageProtocolEntity.getBody(),'jid':messageProtocolEntity.getFrom()})
             # outgoingMessageProtocolEntity = TextMessageProtocolEntity(
             #     messageProtocolEntity.getBody(),
             #     to = messageProtocolEntity.getFrom())
@@ -59,7 +58,6 @@ if __name__==  "__main__":
     stack.setProp(YowCoderLayer.PROP_RESOURCE, YowsupEnv.getCurrent().getResource())          #info about us as WhatsApp client
 
     stack.broadcastEvent(YowLayerEvent(YowNetworkLayer.EVENT_STATE_CONNECT))   					#sending the connect signal
-
     stack.loop() #this is the program mainloop
 
 

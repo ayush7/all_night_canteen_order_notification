@@ -1,5 +1,5 @@
 #!/bin/sh
 while [ True ]
 do 
-	sudo python whatsapp.py 
+	sudo python whatsup.py
 done
