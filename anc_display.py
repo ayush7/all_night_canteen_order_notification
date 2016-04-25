@@ -2,6 +2,8 @@ import os
 import flask
 import time
 import datetime
+import requests
+import thread
 
 
 
@@ -26,6 +28,14 @@ time_end_sec=dict()
 def time_min(sec):
 	return datetime.datetime.fromtimestamp(sec).strftime('%Y-%m-%d %H:%M:%S')
 
+def sendToServer(q):
+	print "starting thread"
+	payload = {'token': str(q)}
+	r = requests.post('http://mess1-bot.mybluemix.net/ready',data=payload)
+	print r.status_code
+
+
+
 @app.route("/")
 def display():
 	if request.method=='GET':
@@ -40,7 +50,7 @@ def main():
 		return render_template('form.html',params=tokens)
 	
 	if request.method=='POST':
-		print 2
+		# print 2
 		if "q" in request.form.keys():	
 			q=request.form['q']
 			if q and q.isdigit():
@@ -54,6 +64,13 @@ def main():
 						time_start_sec[q]=time.time()
 						tokens.append(q)
 						tokens.sort()
+						# try:
+						thread.start_new_thread(sendToServer,(q,))
+						# except:
+   							# print "Error: unable to start thread"
+   						
+
+
 		if "d" in request.form.keys():
 			d=request.form['d']
 			if d and d.isdigit():
@@ -83,4 +100,4 @@ def info():
 
 if __name__=='__main__':
 	app.debug=True
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0',port=80)
