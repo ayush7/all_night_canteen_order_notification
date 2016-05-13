@@ -38,6 +38,7 @@
 			/*IP ticker on bottom*/
 			#ip_tick{
 			    position:fixed;
+			    display: inline-block;
 			    /*height:3em;*/
 			    padding-top: 0.5em;
 			    padding-bottom: 0.5em;
@@ -83,8 +84,11 @@
 	</head>
 	<body>
 		<div id="top_tick">
-		
+		<div style=" width: 80%; display: inline-block;">
 		Ready Orders
+		</div>
+		<img src="static/SmartCampusBot.png" style="float: left; width: 8%;">
+
 	
 		</div>
 
@@ -109,10 +113,11 @@
 
 
 		<div id="ip_tick">
-			Connect to Wi-Fi named <span id="ip_link">stark</span> and goto <span id="ip_link">192.168.0.116</span> from your phone to get live status. 
-			<br>
-			<div id="BPHC">
-			Created by SmartCampus<sup>&reg</sup>, BITS Pilani - Hyderabad Campus
+			<div style="font-size: 22px;">Get realtime notification of your food order using Telegram by chatting with "@SmartCampusBot" or Scan the QR Code.
+			</div>
+			
+			<div id="BPHC" style="font-size: 16px;">
+			Created by SmartCampus, BITS Pilani - Hyderabad Campus
 		</div>
 
 
